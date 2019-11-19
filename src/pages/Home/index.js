@@ -1,107 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { MdAddShoppingCart } from 'react-icons/md';
-
+import { formatPrice } from '../../util/format';
 import { ProductList } from './styles';
+import api from '../../services/api';
 
-export default function Home() {
-  return (
-    <ProductList>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-i-1920-sn-torcedor-c-patrocinio-adidas-masculina/68/COL-7378-068/COL-7378-068_zoom1.jpg"
-          alt="Camisa"
-        />
-        <strong>Camisa do Mengão</strong>
-        <span>R$249,90</span>
+import * as CartActions from '../../store/modules/cart/actions';
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+class Home extends Component {
+  state = {
+    products: [],
+  };
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-i-1920-sn-torcedor-c-patrocinio-adidas-masculina/68/COL-7378-068/COL-7378-068_detalhe2.jpg?ims=326x"
-          alt="Camisa"
-        />
-        <strong>Camisa do Mengão</strong>
-        <span>R$249,90</span>
+  async componentDidMount() {
+    const response = await api.get('products');
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+    const data = response.data.map(product => ({
+      ...product,
+      priceFormatted: formatPrice(product.price),
+    }));
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-i-1920-sn-torcedor-c-patrocinio-adidas-masculina/68/COL-7378-068/COL-7378-068_zoom1.jpg"
-          alt="Camisa"
-        />
-        <strong>Camisa do Mengão</strong>
-        <span>R$249,90</span>
+    this.setState({ products: data });
+  }
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+  handleAddProduct = product => {
+    const { addToCart } = this.props;
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-i-1920-sn-torcedor-c-patrocinio-adidas-masculina/68/COL-7378-068/COL-7378-068_detalhe2.jpg?ims=326x"
-          alt="Camisa"
-        />
-        <strong>Camisa do Mengão</strong>
-        <span>R$249,90</span>
+    addToCart(product);
+  };
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+  render() {
+    const { products } = this.state;
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-i-1920-sn-torcedor-c-patrocinio-adidas-masculina/68/COL-7378-068/COL-7378-068_zoom1.jpg"
-          alt="Camisa"
-        />
-        <strong>Camisa do Mengão</strong>
-        <span>R$249,90</span>
+    return (
+      <ProductList>
+        {products.map(product => (
+          <li key={product.id}>
+            <img src={product.image} alt={product.title} />
+            <strong>{product.title}</strong>
+            <span>{product.priceFormatted}</span>
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
+            <button
+              type="button"
+              onClick={() => this.handleAddProduct(product)}
+            >
+              <div>
+                <MdAddShoppingCart size={16} color="#fff" /> 3
+              </div>
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/camisa-flamengo-i-1920-sn-torcedor-c-patrocinio-adidas-masculina/68/COL-7378-068/COL-7378-068_detalhe2.jpg?ims=326x"
-          alt="Camisa"
-        />
-        <strong>Camisa do Mengão</strong>
-        <span>R$249,90</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 3
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-    </ProductList>
-  );
+              <span>ADICIONAR AO CARRINHO</span>
+            </button>
+          </li>
+        ))}
+      </ProductList>
+    );
+  }
 }
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(null, mapDispatchToProps)(Home);

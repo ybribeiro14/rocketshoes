@@ -1,0 +1,66 @@
+{
+  "stock": [
+    {
+      "id": 1,
+      "amount": 3
+    },
+    {
+      "id": 2,
+      "amount": 5
+    },
+    {
+      "id": 3,
+      "amount": 2
+    },
+    {
+      "id": 4,
+      "amount": 1
+    },
+    {
+      "id": 5,
+      "amount": 5
+    },
+    {
+      "id": 6,
+      "amount": 10
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Camisa Flamengo I 19/20 s/nº Torcedor c/ Patrocínio Adidas Masculina - Vermelho e Preto",
+      "price": 249.99,
+      "image": "https://static.netshoes.com.br/produtos/camisa-flamengo-i-1920-sn-torcedor-c-patrocinio-adidas-masculina/68/COL-7378-068/COL-7378-068_zoom1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Camisa Flamengo II 19/20 s/nº Jogador Adidas Masculina - Branco e Vermelho",
+      "price": 349.99,
+      "image": "https://static.netshoes.com.br/produtos/camisa-flamengo-ii-1920-sn-jogador-adidas-masculina/24/NQQ-1211-024/NQQ-1211-024_zoom1.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Camisa Flamengo Zico Retrô Libertadores Masculina - Preto e Vermelho",
+      "price": 139.9,
+      "image": "https://static.netshoes.com.br/produtos/camisa-flamengo-zico-retro-libertadores-masculina/02/D40-0544-002/D40-0544-002_zoom1.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Tênis Nike Revolution 5 Masculino - Preto e Branco",
+      "price": 199.99,
+      "image": "https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom1.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Chuteira Campo Juvenil Adidas Predator 19 3 FG",
+      "price": 279.99,
+      "image": "https://static.netshoes.com.br/produtos/chuteira-campo-juvenil-adidas-predator-19-3-fg/60/COL-7817-060/COL-7817-060_detalhe1.jpg?ims=326x"
+    },
+    {
+      "id": 4,
+      "title": "Chuteira Campo Juvenil Adidas X 19 3 FG",
+      "price": 279.99,
+      "image": "https://static.netshoes.com.br/produtos/chuteira-campo-juvenil-adidas-x-19-3-fg/40/COL-7819-140/COL-7819-140_detalhe1.jpg?ims=326x"
+    }
+  ]
+}
